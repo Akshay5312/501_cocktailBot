@@ -1,0 +1,7 @@
+K = BotKinematics();
+Q = [0 0 0];
+K.getFK([0 0 0])
+
+Fr = K.getFrames(Q)
+LinkPoints = zeros(3,7);
+
