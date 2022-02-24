@@ -10,6 +10,7 @@
             85 Q(6) 0 0 ];
 
         dhsize = 7;
+        joints = 6;
 
 
 
@@ -34,4 +35,13 @@
                 Frame{m}
            end
       
+           FK = Frame{dhsize+1};
+           FK = FK(1:3,4);
+            
+           syms q1 q2 q3 q4 q5 q6
+           FK;
+           FK = subs(FK, [q(1) q(2) q(3) q(4) q(5) q(6)], [q1 q2 q3 q4 q5 q6])
+
+           J = jacobian(FK, [q1 q2 q3 q4 q5 q6])
+
 

@@ -1,13 +1,16 @@
         %organized as 
         %         [d \theta a \alpha]
         DHtable = @(Q)...
-            [475 Q(1) 150 pi/2;...
+            [475 Q(1) 0 0;...
+            0 0 150 pi/2;...
             0 Q(2)+pi/2 600 0;...
-            0 Q(3) 120 -pi/2;...%cutoff for 3DOF
-            720 Q(4) 0 0
-            0 Q(3) 5 0];
+            0 Q(3) 120 pi/2;...%cutoff for 3DOF
+            720 Q(4) 0 pi/2;...
+            0 Q(5) 0 -pi/2;...
+            85 Q(6) 0 0 ];
 
-        dhsize = 3;
+        dhsize = 7;
+        joints = 6;
 
 
 
@@ -32,4 +35,11 @@
                 Frame{m}
            end
       
+           FK = Frame{dhsize+1};
+           FK = FK(1:3,4);
+            
+           J;
+           for m = 0:joints
+               q(m) 
+           end
 
