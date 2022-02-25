@@ -1,5 +1,5 @@
-K = BotKinematics();
-Q = [0 0 0 0 0 0];
+K = kinematics.BotKinematics();
+Q = [0 0 pi/2 0 0 0];
 %K.getFK([0 0 0])
 
 Fr = K.getFrames(Q)
@@ -12,6 +12,6 @@ end
 
 
 
-ps = PlotSim();
+ps = plotter.PlotSim();
 
 ps.plot(LinkPoints)
