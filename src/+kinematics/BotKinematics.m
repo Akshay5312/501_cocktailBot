@@ -32,7 +32,7 @@ classdef BotKinematics
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %FK functions
         function R = botFK(self,Q)
-
+            
         end
 
         function F = getFrame(self,Q, index)
@@ -107,6 +107,18 @@ classdef BotKinematics
             [                                                                                                                                                                                                                                                                                                                                                                                     0,                                                                         600*cos(q2 + pi/2) + 120*cos(q3)*cos(q2 + pi/2) + 720*cos(q3)*sin(q2 + pi/2) + 720*cos(q2 + pi/2)*sin(q3) - 120*sin(q3)*sin(q2 + pi/2) + 85*cos(q5)*(cos(q3)*sin(q2 + pi/2) + cos(q2 + pi/2)*sin(q3)) - 85*cos(q4)*sin(q5)*(cos(q3)*cos(q2 + pi/2) - sin(q3)*sin(q2 + pi/2)),                                                                 120*cos(q3)*cos(q2 + pi/2) + 720*cos(q3)*sin(q2 + pi/2) + 720*cos(q2 + pi/2)*sin(q3) - 120*sin(q3)*sin(q2 + pi/2) + 85*cos(q5)*(cos(q3)*sin(q2 + pi/2) + cos(q2 + pi/2)*sin(q3)) - 85*cos(q4)*sin(q5)*(cos(q3)*cos(q2 + pi/2) - sin(q3)*sin(q2 + pi/2)),                                      85*sin(q4)*sin(q5)*(cos(q3)*sin(q2 + pi/2) + cos(q2 + pi/2)*sin(q3)),                                                       85*sin(q5)*(cos(q3)*cos(q2 + pi/2) - sin(q3)*sin(q2 + pi/2)) - 85*cos(q4)*cos(q5)*(cos(q3)*sin(q2 + pi/2) + cos(q2 + pi/2)*sin(q3)), 0]];
              
         end
+        function X = frame2State(self, F)
+            X = zeros(6,1);
+            X13 = F(1:3,4);
+            R = F(1:3,1:3);
+
+           X(1:3) = X13;
+           X(4:6) = decomPose.decomPose(R);
+        end
+        function F = getState(self, Q)
+            %%X = frame2State(getFK)
+        end
+ 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %IK functions
 
