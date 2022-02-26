@@ -32,7 +32,8 @@ classdef BotKinematics
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %FK functions
         function R = botFK(self,Q)
-             Fr = getFrames(Q);
+            
+             Fr = self.getFrames(Q);
             R = Fr{8};
         end
 
@@ -114,10 +115,10 @@ classdef BotKinematics
             R = F(1:3,1:3);
 
            X(1:3) = X13;
-           X(4:6) = decomPose.decomPose(R);
+           X(4:6) = kinematics.decomPose(R);
         end
         function X = getState(self, Q)
-            X = self.frame2State(getFK(Q));
+            X = self.frame2State(self.botFK(Q));
         end
  
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
