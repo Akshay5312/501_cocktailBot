@@ -8,6 +8,9 @@ classdef ABBBot
         TaskPos
         JointPos
 
+        currTraj;
+        usingTraj = false;
+
     end
     
     methods
