@@ -122,6 +122,8 @@ classdef BotKinematics
  
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %IK functions
+        function IKJacob
+
 
 
     end

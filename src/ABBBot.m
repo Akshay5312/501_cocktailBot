@@ -4,9 +4,13 @@ classdef ABBBot
     
     properties
         ABBKinematics = kinematics.BotKinematics();
-        targetTaskPos
-        TaskPos
-        JointPos
+        
+        %taskPos
+        X;
+        %joint pos
+        Q;
+        %current Q set velocity
+        Qdot = [0; 0; 0];
 
         currTraj;
         usingTraj = false;
@@ -15,12 +19,24 @@ classdef ABBBot
     
     methods
         function self = ABBBot(initJoints)
-            JointPos = initJoints;
+            self.Q = initJoints;
+            self.X = self.ABBKinematics.getState(self.Q);
+            self.standStill();
+        end
 
+        function self = standStill(self)
+            self.currTraj = planner.Trajectory(self.Q, self.Q);
+            self.usingTraj = true;
+        end
+
+        function self = moveTowards(self, targetState, speed)
+            Xvel = (targetState - self.X) / norm(targetState - self.X)*speed
+            self.Qdot = self.ABBKinematics.IKJacob(self.Q)*Xvel;
         end
         
-        function run(self)
-            self.ABBKinematics.getFK()
+        function self = run(self)
+            %updateQ
+            self.X = self.ABBKinematics.getState(self.Q);
         end
     end
 end

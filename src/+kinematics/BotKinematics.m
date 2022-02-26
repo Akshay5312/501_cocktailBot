@@ -122,7 +122,10 @@ classdef BotKinematics
  
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %IK functions
-        
+        function invJ = IKJacobian(self, Q)
+            invJ = inv(self.Jacobian(Q));
+        end
+
 
 
     end
