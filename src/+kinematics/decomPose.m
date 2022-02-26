@@ -2,11 +2,12 @@ function X46 = decomPose(R)
     if norm(R - eye(3)) == 0
         X46 = [0;0;0];
     else
-        w = null(R-eye(3))
-        norm(w)
+        R
+        w = null(R-eye(3));
+        norm(w);
 
         %find random unit vector that is not w, -w
-        randomVec = [1;0;0]
+        randomVec = [1;0;0];
         while  (norm((randomVec - w))  < 0.2) || (norm((randomVec + w))  < 0.2)
         randomVec = rand(3,1);
         randomVec = randomVec/norm(randomVec);

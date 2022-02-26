@@ -42,8 +42,12 @@ classdef ABBBot
         function self = moveTowards(self, targetState, speed)
             if norm(targetState - self.X) < 0.2
                 self.Qdot = zeros(self.Qsize, 1);
+                quit
             else
                 Xvel = (targetState - self.X) / norm(targetState - self.X)*speed;
+
+                self.ABBKinematics.Jacobian(self.Q)
+
                 self.Qdot = self.ABBKinematics.IKJacobian(self.Q)*Xvel;
             end
         end
@@ -65,7 +69,8 @@ classdef ABBBot
         function self = runBot(self, timeSinceLastRun)
             %5mm per second
             %can setup as PID later
-            self.moveTowards(self.target, 5)
+            self = self.moveTowards(self.target, 5);
+     
             %updateQ
             self.Q = self.Q+self.Qdot*timeSinceLastRun;
 
@@ -75,6 +80,18 @@ classdef ABBBot
 
         function F = getFrames(self)
             F = self.ABBKinematics.getFrames(self.Q);
+        end
+
+        function F = getLinkPoints(self)
+            Fr = self.getFrames();
+            LinkPoints = zeros(3,8);
+
+            for m = 1:8
+                Frame = Fr{m};
+                LinkPoints(:,m) = Frame(1:3,4);
+            end
+
+            F = LinkPoints;
         end
 
     end
