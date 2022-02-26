@@ -68,7 +68,8 @@ classdef ABBBot
         function self = runBot(self, timeSinceLastRun)
             %5mm per second
             %can setup as PID later
-            self = self.moveTowards(self.target, 5);
+            effort = norm(self.target - self.X)/500
+            self = self.moveTowards(self.target, effort);
      
             %updateQ
             self.Q = self.Q+self.Qdot*timeSinceLastRun;
