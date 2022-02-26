@@ -2,7 +2,7 @@ function X46 = decomPose(R)
     if norm(R - eye(3)) == 0
         X46 = [0;0;0];
     else
-        R
+        
         w = null(R-eye(3));
         norm(w);
 

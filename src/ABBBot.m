@@ -46,7 +46,6 @@ classdef ABBBot
             else
                 Xvel = (targetState - self.X) / norm(targetState - self.X)*speed;
 
-                self.ABBKinematics.Jacobian(self.Q)
 
                 self.Qdot = self.ABBKinematics.IKJacobian(self.Q)*Xvel;
             end
@@ -63,7 +62,7 @@ classdef ABBBot
         %end
 
         function self = runRealTime(self)
-            self.runBot(etime(clock, self.t0));
+            self = self.runBot(etime(clock, self.t0));
         end
 
         function self = runBot(self, timeSinceLastRun)
@@ -79,6 +78,7 @@ classdef ABBBot
         end
 
         function F = getFrames(self)
+            self.Q;
             F = self.ABBKinematics.getFrames(self.Q);
         end
 

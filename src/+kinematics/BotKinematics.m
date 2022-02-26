@@ -43,7 +43,7 @@ classdef BotKinematics
         end
 
         function Frames = getFrames(self, q)
-            Frames = cell(7,1);
+            Frames = cell(8,1);
 
             Frames{1} =   [   1     0     0     0;     0     1     0     0;     0     0     1     0;     0     0     0     1];
             
@@ -124,7 +124,6 @@ classdef BotKinematics
            X(4:6) = kinematics.decomPose(R);
         end
         function X = getState(self, Q)
-            self.botFK(Q)
             X = self.frame2State(self.botFK(Q));
         end
  
