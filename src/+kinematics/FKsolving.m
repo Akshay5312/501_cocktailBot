@@ -30,9 +30,9 @@
            end
             
            for m = 1:dhsize+1
-               disp('FK for frame number ')
-               disp(m-1)
-                Frame{m}
+               disp('FK for frame number ');
+               disp(m-1);
+                Frame{m};
            end
       
            FK = Frame{dhsize+1};
@@ -40,19 +40,23 @@
             
            syms q1 q2 q3 q4 q5 q6
            FK;
-           FK = subs(FK, [q(1) q(2) q(3) q(4) q(5) q(6)], [q1 q2 q3 q4 q5 q6])
+           FK = subs(FK, [q(1) q(2) q(3) q(4) q(5) q(6)], [q1 q2 q3 q4 q5 q6]);
 
-           J = jacobian(FK, [q1 q2 q3 q4 q5 q6])
+           J = jacobian(FK, [q1 q2 q3 q4 q5 q6]);
 
-           F1 = Frame{1}
-           F3 = Frame{3}
-           F4 = Frame{4}
-           F5 = Frame{5}
-           F6 = Frame{6}
-           F7 = Frame{7}
+
+           F1 = Frame{1};
+           F3 = Frame{3};
+           F4 = Frame{4};
+           F5 = Frame{5};
+           F6 = Frame{6};
+           F7 = Frame{7};
 
            Jo = [F1(1:3,3) F3(1:3,3) F4(1:3,3) F5(1:3,3) F6(1:3,3) F7(1:3,3)];
 
-           Jo = subs(Jo, [q(1) q(2) q(3) q(4) q(5) q(6)], [q1 q2 q3 q4 q5 q6])
-
-
+           Jo = subs(Jo, [q(1) q(2) q(3) q(4) q(5) q(6)], [q1 q2 q3 q4 q5 q6]);
+            
+           j = [J;Jo];
+            
+           
+           iJ = inv(j)

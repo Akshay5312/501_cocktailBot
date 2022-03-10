@@ -1,5 +1,5 @@
 Bot = ABBBot([0;0;0;0;0.1;0]);
-Bot = Bot.setTarget([95; 53; 202; 0; 0.1; 0])
+Bot = Bot.setTarget([800; 300; 202; 0; 0.1; 0])
 
 Sim = plotter.PlotSim();
 
@@ -8,16 +8,16 @@ Sim = plotter.PlotSim();
 
     Sim = Sim.plot(F)
 
-    t0 = clock;
+    t0 = clock
 while (true)
     Bot = Bot.runRealTime();
     F = Bot.getLinkPoints();
 
     Sim = Sim.plot(F)
-    if etime(t0, clock) > 1
-        EE = F{8};
-        EE = EE(1:3,4);
-        EE;
-        t0 = clock;
-    end
+%     if etime(t0, clock) > 1
+%         EE = F{8};
+%         EE = EE(1:3,4);
+%         EE;
+%         t0 = clock;
+%     end
 end
