@@ -39,6 +39,9 @@ classdef ABBBot
             self.setTarget(self.X); 
         end
         
+        function reached = hasReached(self)
+            reached = (norm(self.target - self.X) < 1);
+        end
         function self = moveTowards(self, targetState, speed)
             if norm(targetState - self.X) < 0.2
                 self.Qdot = zeros(self.Qsize, 1);

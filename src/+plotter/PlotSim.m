@@ -28,6 +28,9 @@ classdef PlotSim
             plot3(X,Y,Z)
             hold on
             plot3(X,Y,Z, 'o')
+            xlim([-1000 1000])
+            ylim([-1000 1000])
+            zlim([0 1500])
             hold off
             drawnow
         end

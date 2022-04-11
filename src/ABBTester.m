@@ -9,11 +9,12 @@ Sim = plotter.PlotSim();
     Sim = Sim.plot(F)
 
     t0 = clock
-while (true)
+while (not(Bot.hasReached))
     Bot = Bot.runRealTime();
     F = Bot.getLinkPoints();
 
     Sim = Sim.plot(F)
+
 %     if etime(t0, clock) > 1
 %         EE = F{8};
 %         EE = EE(1:3,4);
