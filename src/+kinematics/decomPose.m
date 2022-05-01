@@ -4,13 +4,15 @@ function X46 = decomPose(R)
     else
         
         w = null(R-eye(3));
-        norm(w);
-
+        if(norm(w) == 0)
+            X46 = [0;0;0]
+        else
         %find random unit vector that is not w, -w
         randomVec = [1;0;0];
-        while  (norm((randomVec - w))  < 0.2) || (norm((randomVec + w))  < 0.2)
-        randomVec = rand(3,1);
-        randomVec = randomVec/norm(randomVec);
+
+        while  (norm((randomVec - w))  < 0.1) || (norm((randomVec + w))  < 0.1)
+            randomVec = rand(3,1);
+            randomVec = randomVec/norm(randomVec);
         end
         %
         
@@ -23,5 +25,6 @@ function X46 = decomPose(R)
         theta = real(acos(CosTheta));
 
         X46 = w*theta;
+        end
     end
 end
